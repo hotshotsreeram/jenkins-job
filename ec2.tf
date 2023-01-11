@@ -10,4 +10,9 @@ resource "aws_instance" "practice_instance" {
     # nginx installation
     associate_public_ip_address = true
     user_data = file("userdata.sh")
+    tags = {
+    # The count.index allows you to launch a resource 
+    # starting with the distinct index number 0 and corresponding to this instance.
+    Name = "my-machine"
+  }
 }
