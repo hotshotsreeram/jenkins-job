@@ -56,8 +56,8 @@ resource "aws_launch_template" "hello-world" {
 resource "aws_autoscaling_group" "practice" {
   vpc_zone_identifier = [var.subnet, var.subnet2]
   desired_capacity   = 2
-  max_size           = 1
-  min_size           = 2
+  max_size           = 2
+  min_size           = 1
 
   launch_template {
     id      = aws_launch_template.hello-world.id
