@@ -3,6 +3,7 @@ ami = "ami-06878d265978313ca"
 instance_type = "t2.micro"
 key = "My_practice"
 subnet = "subnet-05b32cf08f677db3d"
+subnet2 = "subnet-033a47e1983a585b3"
 security_group = ["sg-019cab2b12530f780",]
 name = "practice-template"
 profile = "CodeDeployDemo-EC2-Instance-Profile"

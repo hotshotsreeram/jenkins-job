@@ -29,3 +29,7 @@ variable "name" {
 variable "profile" {
     type = string
 }
+
+variable "subnet2" {
+    type = string
+}
