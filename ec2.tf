@@ -54,7 +54,7 @@ resource "aws_launch_template" "hello-world" {
 }
 
 resource "aws_autoscaling_group" "practice" {
-  vpc_zone_identifier = [var.subnet, var.sbunet2]
+  vpc_zone_identifier = [var.subnet, var.subnet2]
   desired_capacity   = 2
   max_size           = 1
   min_size           = 1
