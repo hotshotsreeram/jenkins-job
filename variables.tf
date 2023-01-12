@@ -21,3 +21,11 @@ variable "subnet" {
 variable "security_group" {
     type = list(string)
 }
+
+variable "name" {
+    type = string
+}
+
+variable "profile" {
+    type = string
+}
