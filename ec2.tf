@@ -58,9 +58,24 @@ resource "aws_autoscaling_group" "practice" {
   desired_capacity   = 2
   max_size           = 2
   min_size           = 1
+  load_balancers = [aws_lb.practice.id]
 
   launch_template {
     id      = aws_launch_template.hello-world.id
     version = "$Latest"
+  }
+}
+
+resource "aws_lb" "practice" {
+  name               = "practice-lb-tf"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = var.security_group
+  subnets            = [var.subnet, var.subnet2]
+
+  enable_deletion_protection = false
+
+  tags = {
+    Environment = "practice"
   }
 }
