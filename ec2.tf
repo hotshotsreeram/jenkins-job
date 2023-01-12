@@ -36,6 +36,7 @@ resource "aws_ebs_snapshot" "practice_snapshot" {
 }
 
 resource "aws_ami_from_instance" "practice" {
+  name = "${aws_instance.practice_instance.id}-practice"
   source_instance_id = aws_instance.practice_instance.id
 }
 
