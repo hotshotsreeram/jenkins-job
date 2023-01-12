@@ -58,7 +58,7 @@ resource "aws_autoscaling_group" "practice" {
   desired_capacity   = 2
   max_size           = 2
   min_size           = 1
-  load_balancers = [aws_lb.practice.id]
+  load_balancers = [aws_elb.practice.id]
 
   launch_template {
     id      = aws_launch_template.hello-world.id
@@ -66,7 +66,7 @@ resource "aws_autoscaling_group" "practice" {
   }
 }
 
-resource "aws_lb" "practice" {
+resource "aws_elb" "practice" {
   name               = "practice-lb-tf"
   internal           = false
   load_balancer_type = "application"
