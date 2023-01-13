@@ -58,7 +58,8 @@ resource "aws_autoscaling_group" "practice" {
   desired_capacity   = 2
   max_size           = 2
   min_size           = 1
-  load_balancers = [aws_elb.practice.id]
+  health_check_type    = "ELB"
+  load_balancers = [aws_elb.practice_elb.id]
 
   launch_template {
     id      = aws_launch_template.hello-world.id
@@ -66,16 +67,22 @@ resource "aws_autoscaling_group" "practice" {
   }
 }
 
-resource "aws_elb" "practice" {
-  name               = "practice-lb-tf"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = var.security_group
-  subnets            = [var.subnet, var.subnet2]
-
-  enable_deletion_protection = false
-
-  tags = {
-    Environment = "practice"
+resource "aws_elb" "practice_elb" {
+  name = "practice-elb"
+  security_groups = var.security_group
+  subnets = [var.subnet, var.subnet2]
+  cross_zone_load_balancing   = true
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 3
+    interval = 30
+    target = "HTTP:80/"
+  }
+  listener {
+    lb_port = 80
+    lb_protocol = "http"
+    instance_port = "80"
+    instance_protocol = "http"
   }
 }
