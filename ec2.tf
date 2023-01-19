@@ -18,23 +18,6 @@ resource "aws_instance" "practice_instance" {
 }
 
 
-resource "aws_ebs_volume" "practice" {
-  availability_zone = "us-east-1a"
-  size              = 8
-
-  tags = {
-    Name = "Practice"
-  }
-}
-
-resource "aws_ebs_snapshot" "practice_snapshot" {
-  volume_id = aws_ebs_volume.practice.id
-
-  tags = {
-    Name = "Practice_snap"
-  }
-}
-
 resource "aws_ami_from_instance" "practice" {
   name = "${aws_instance.practice_instance.id}-practice"
   source_instance_id = aws_instance.practice_instance.id
