@@ -8,4 +8,4 @@ systemctl start nginx
 cd /home/ubuntu/
 git clone https://github.com/hotshotsreeram/jenkins-job.git
 sudo -i
-cat /home/ubuntu/jenkins-job/index.yaml > /var/www/html/index.nginx-debian.html
+cat /home/ubuntu/jenkins-job/index.html > /var/www/html/index.nginx-debian.html
