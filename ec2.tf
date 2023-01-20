@@ -15,14 +15,14 @@ resource "aws_instance" "practice_instance" {
     # starting with the distinct index number 0 and corresponding to this instance.
     Name = "my-machine"
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_ami_from_instance" "practice" {
   name = "${aws_instance.practice_instance.id}-practice"
   source_instance_id = aws_instance.practice_instance.id
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "aws_launch_template" "hello-world" {
@@ -35,9 +35,6 @@ resource "aws_launch_template" "hello-world" {
   instance_type = var.instance_type
   key_name = var.key
   vpc_security_group_ids = var.security_group
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "aws_autoscaling_group" "practice" {
