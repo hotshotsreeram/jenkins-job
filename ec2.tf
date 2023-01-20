@@ -38,9 +38,6 @@ resource "aws_launch_template" "hello-world" {
   lifecycle {
     prevent_destroy = true
   }
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "aws_autoscaling_group" "practice" {
