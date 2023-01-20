@@ -35,9 +35,9 @@ resource "aws_launch_template" "hello-world" {
   instance_type = var.instance_type
   key_name = var.key
   vpc_security_group_ids = var.security_group
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 resource "aws_autoscaling_group" "practice" {
