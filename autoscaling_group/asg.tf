@@ -1,11 +1,11 @@
 module "lt" {
-  source = "jenkins-job/launch_template"
+  source = "/var/lib/jenkins/workspace/jenkins-test/launch_template"
 
   # ... additional inputs
 }
 
 module "elb" {
-  source = "jenkins-job/elb"
+  source = "/var/lib/jenkins/workspace/jenkins-test/elb"
 
   # ... additional inputs
 }

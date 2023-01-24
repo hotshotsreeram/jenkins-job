@@ -1,5 +1,5 @@
 module "ami_id" {
-  source = "jenkins-job/ami"
+  source = "/var/lib/jenkins/workspace/jenkins-test/ami"
 
   # ... additional inputs
 }

@@ -1,5 +1,5 @@
 module "instance_id" {
-  source = "jenkins-job/ec2"
+  source = "/var/lib/jenkins/workspace/jenkins-test/ec2"
 
   # ... additional inputs
 }
