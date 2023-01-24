@@ -1,20 +1,8 @@
-variable "aws_region"{
-    type = string
-}
-
-variable "ami" {
-    type = string
-}
-
 variable "instance_type" {
     type = string
 }
 
 variable "key" {
-    type = string
-}
-
-variable "subnet" {
     type = string
 }
 
@@ -30,6 +18,6 @@ variable "profile" {
     type = string
 }
 
-variable "subnet2" {
+variable "aws_region"{
     type = string
 }

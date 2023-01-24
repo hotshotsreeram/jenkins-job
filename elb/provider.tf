@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "my-tf-sr-first-bucket"
-    key = "practice/jenkins-job/terraform.tfstate"
+    key = "practice/jenkins-job/elb/terraform.tfstate"
     region = "us-east-1"
   }
 }
