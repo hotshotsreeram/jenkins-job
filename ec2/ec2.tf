@@ -15,11 +15,9 @@ resource "aws_instance" "practice_instance" {
     # starting with the distinct index number 0 and corresponding to this instance.
     Name = "my-machine"
   }
+  
   lifecycle {
     create_before_destroy = true
   }
 }
 
-output "instance" {
-  value = aws_instance.practice_instance.id
-}
