@@ -21,11 +21,16 @@ resource "aws_autoscaling_group" "practice" {
   desired_capacity   = 2
   max_size           = 2
   min_size           = 1
-  health_check_type    = "ELB"
+  health_check_type    = "EC2"
   load_balancers = [data.terraform_remote_state.elb.outputs.elb_id]
 
   launch_template {
     id      = data.terraform_remote_state.lt.outputs.lt_id
     version = data.terraform_remote_state.lt.outputs.version
+  }
+
+  instance_refresh {
+    strategy = "Rolling"
+    triggers = ["launch_template"]
   }
 }
