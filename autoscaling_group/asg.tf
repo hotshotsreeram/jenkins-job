@@ -26,6 +26,6 @@ resource "aws_autoscaling_group" "practice" {
 
   launch_template {
     id      = data.terraform_remote_state.lt.outputs.lt_id
-    version = "$Latest"
+    version = data.terraform_remote_state.lt.outputs.version
   }
 }

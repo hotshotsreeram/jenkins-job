@@ -25,3 +25,7 @@ resource "aws_launch_template" "hello-world" {
 output "lt_id" {
   value = aws_launch_template.hello-world.id
 }
+
+output "version" {
+    value = aws_launch_template.hello-world.latest_version
+}
