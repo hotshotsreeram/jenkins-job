@@ -1,8 +1,8 @@
 data "terraform_remote_state" "instance"{
-    backend "s3" {
-    bucket = "my-tf-sr-first-bucket"
-    key = "practice/jenkins-job/ec2/terraform.tfstate"
-    region = "us-east-1"
+    backend = "s3" {
+        bucket = "my-tf-sr-first-bucket"
+        key = "practice/jenkins-job/ec2/terraform.tfstate"
+        region = "us-east-1"
   }
 }
 
