@@ -1,13 +1,19 @@
-module "lt" {
-  source = "/var/lib/jenkins/workspace/jenkins-test/launch_template"
-
-  # ... additional inputs
+data "terraform_remote_state" "elb"{
+    backend = "s3" 
+    config = {
+        bucket = "my-tf-sr-first-bucket"
+        key = "practice/jenkins-job/elb/terraform.tfstate"
+        region = "us-east-1"
+    }
 }
 
-module "elb" {
-  source = "/var/lib/jenkins/workspace/jenkins-test/elb"
-
-  # ... additional inputs
+data "terraform_remote_state" "lt"{
+    backend = "s3" 
+    config = {
+        bucket = "my-tf-sr-first-bucket"
+        key = "practice/jenkins-job/lt/terraform.tfstate"
+        region = "us-east-1"
+    }
 }
 
 resource "aws_autoscaling_group" "practice" {
@@ -16,10 +22,10 @@ resource "aws_autoscaling_group" "practice" {
   max_size           = 2
   min_size           = 1
   health_check_type    = "ELB"
-  load_balancers = [module.elb.elb_id]
+  load_balancers = [data.terraform_remote_state.elb.outputs.elb_id]
 
   launch_template {
-    id      = module.lt.lt_id
+    id      = data.terraform_remote_state.lt.outputs.lt_id
     version = "$Latest"
   }
 }

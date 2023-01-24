@@ -1,7 +1,10 @@
-module "ami_id" {
-  source = "/var/lib/jenkins/workspace/jenkins-test/ami"
-
-  # ... additional inputs
+data "terraform_remote_state" "ami"{
+    backend = "s3" 
+    config = {
+        bucket = "my-tf-sr-first-bucket"
+        key = "practice/jenkins-job/ami/terraform.tfstate"
+        region = "us-east-1"
+    }
 }
 
 resource "aws_launch_template" "hello-world" {
@@ -10,7 +13,7 @@ resource "aws_launch_template" "hello-world" {
   iam_instance_profile {
     name = var.profile
   }
-  image_id = module.ami_id.ami
+  image_id = data.terraform_remote_state.ami.outputs.ami
   instance_type = var.instance_type
   key_name = var.key
   vpc_security_group_ids = var.security_group
