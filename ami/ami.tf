@@ -8,8 +8,8 @@ data "terraform_remote_state" "instance"{
 }
 
 resource "aws_ami_from_instance" "practice" {
-  name = "${data.terraform_remote_state.instance.outputs.id}-practice"
-  source_instance_id = data.terraform_remote_state.instance.outputs.id
+  name = "${data.terraform_remote_state.instance.outputs.value}-practice"
+  source_instance_id = data.terraform_remote_state.instance.outputs.value
 }
 
 output "ami" {
