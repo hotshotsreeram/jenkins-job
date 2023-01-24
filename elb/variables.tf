@@ -9,3 +9,7 @@ variable "subnet" {
 variable "aws_region"{
     type = string
 }
+
+variable "security_group" {
+    type = list(string)
+}
