@@ -1,12 +1,14 @@
-module "instance_id" {
-  source = "/var/lib/jenkins/workspace/jenkins-test/ec2"
-
-  # ... additional inputs
+data "terraform_remote_state" "instance"{
+    backend "s3" {
+    bucket = "my-tf-sr-first-bucket"
+    key = "practice/jenkins-job/ec2/terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 resource "aws_ami_from_instance" "practice" {
   name = "${module.instance_id.instance}-practice"
-  source_instance_id = module.instance_id.instance
+  source_instance_id = data.terraform_remote_state.instance.id
 }
 
 output "ami" {
